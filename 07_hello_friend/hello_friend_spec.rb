@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # Hello, friend!
 #
 # This lab teaches basic Ruby Object syntax.
@@ -88,14 +90,14 @@
 #
 #
 
-require "friend"
+require 'friend'
 
 describe Friend do
-  it "says hello" do
-    Friend.new.greeting.should == "Hello!"
+  it 'says hello' do
+    Friend.new.greeting.should == 'Hello!'
   end
 
-  it "says hello to someone" do
-    Friend.new.greeting("Bob").should == "Hello, Bob!"
+  it 'says hello to someone' do
+    Friend.new.greeting('Bob').should == 'Hello, Bob!'
   end
 end

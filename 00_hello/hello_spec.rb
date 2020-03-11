@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # Hello!
 #
 # This lab teaches basic Ruby function syntax.
@@ -113,20 +115,20 @@
 #       "Hello, #{who}!"
 #     end
 #
-require_relative "hello"
+require_relative 'hello'
 
-describe "the hello function" do
-  it "says hello" do
-    hello.should == "Hello!"
+describe 'the hello function' do
+  it 'says hello' do
+    hello.should == 'Hello!'
   end
 end
 
-describe "the greet function" do
-  it "says hello to someone" do
-    greet("Alice").should == "Hello, Alice!"
+describe 'the greet function' do
+  it 'says hello to someone' do
+    greet('Alice').should == 'Hello, Alice!'
   end
 
-  it "says hello to someone else" do
-    greet("Bob").should == "Hello, Bob!"
+  it 'says hello to someone else' do
+    greet('Bob').should == 'Hello, Bob!'
   end
 end
