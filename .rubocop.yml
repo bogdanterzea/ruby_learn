@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - '**/*_spec.rb'
+    - '**/*.html'
+    - 'Gemfile'
+    - 'Rakefile'
+    - '.git/**/*'
+  TargetRubyVersion: 2.3
+
