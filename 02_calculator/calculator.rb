@@ -22,13 +22,10 @@ end
 
 def factorial(number)
   response = 1
-  if number == 0
-    return response
-  end
 
-  while number != 1
+  while number > 1
     response *= number
     number -= 1
   end
-  return response
+  response
 end
