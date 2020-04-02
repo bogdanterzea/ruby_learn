@@ -2,45 +2,38 @@
 
 class Temperature
   def initialize(hash)
-    @ftemp = hash[:f]
-    @ctemp = hash[:c]
+    @ftemp, @ctemp = hash[:f], hash[:c]
+    @ftemp = (@ctemp.to_f * 9 / 5) + 32 unless @ctemp.nil?
+    @ctemp = (@ftemp - 32) * 5 / 9 unless @ftemp.nil?
   end
 
   def in_fahrenheit
-    if @ftemp != 0
-      @ftemp
-    else
-      (@ctemp.to_f * 9 / 5) + 32
-    end
+    @ftemp
   end
 
   def in_celsius
-    if @ftemp != 0
-      (@ftemp - 32) * 5 / 9
-    else
-      @ctemp
-    end
+    @ctemp
   end
 
   def self.from_celsius(temp)
-    new(:c => temp)
+    self.new(:c => temp)
   end
 
   def self.from_fahrenheit(temp)
-    new(:f => temp)
+    self.new(:f => temp)
   end
 end
 
 class Celsius < Temperature
   def initialize(temp)
     @ctemp = temp
-    @ftemp = in_fahrenheit
+    @ftemp = (@ctemp.to_f * 9 / 5) + 32 unless @ctemp.nil?
   end
 end
 
 class Fahrenheit < Temperature
   def initialize(temp)
     @ftemp = temp
-    @ctemp = in_celsius
+    @ctemp = (@ftemp - 32) * 5 / 9 unless @ftemp.nil?
   end
 end
