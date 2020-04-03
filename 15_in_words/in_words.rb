@@ -6,7 +6,7 @@ class Fixnum
     if number >= 1_000_000_000_000
       trillions = number / 1_000_000_000_000
       number_as_string << "#{process(trillions)} trillion "
-      if number % 1_000_000_000_000 == 0
+      if (number % 1_000_000_000_000).zero?
         return number_as_string.strip
       else
         number = number % 1_000_000_000_000
@@ -16,8 +16,8 @@ class Fixnum
     if number >= 1_000_000_000
       billions = number / 1_000_000_000
       number_as_string << "#{process(billions)} billion "
-      if number % 1_000_000_000 == 0
-        return number_as_string.strip
+      if (number % 1_000_000_000).zero?
+        number_as_string.strip
       else
         number = number % 1_000_000_000
       end
@@ -27,7 +27,7 @@ class Fixnum
       millions = number / 1_000_000
       number_as_string << "#{process(millions)} million "
       if (number % 1_000_000).zero?
-        return number_as_string.strip
+        number_as_string.strip
       else
         number = number % 1_000_000
       end
