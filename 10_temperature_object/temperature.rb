@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
 class Temperature
-  def initialize(keyAndValue)
-    @keyAndValue = keyAndValue
-    @key = @keyAndValue.keys[0]
-    @temp = @keyAndValue.values[0]
+  def initialize(key_and_value)
+    @key_and_value = key_and_value
+    @key = @key_and_value.keys[0]
+    @temp = @key_and_value.values[0]
   end
 
   def self.from_celsius(temp)
-    self.new(:c=>temp)
+    self.new(:c => temp)
   end
 
   def self.from_fahrenheit(temp)
-    self.new(:f=>temp)
+    self.new(:f => temp)
   end
 
   def in_celsius
     if @key == :c
       @temp
     else
-      (@temp-32)*(5.0/9.0)
+      (@temp - 32) * (5.0 / 9.0)
     end
   end
 
@@ -27,7 +27,7 @@ class Temperature
     if @key == :f
       @temp
     else
-      (@temp *9.0/5.0) + 32
+      (@temp * 9.0 / 5.0) + 32
     end
   end
 end
