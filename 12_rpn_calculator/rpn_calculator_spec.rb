@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # Topics
 # * arrays
 # * arithmetic
@@ -33,24 +35,23 @@
 # * <http://en.wikipedia.org/wiki/Reverse_Polish_notation>
 # * <http://www.calculator.org/rpn.aspx>
 #
-require "rpn_calculator"
+require 'rpn_calculator'
 
 describe RPNCalculator do
-
   attr_accessor :calculator
 
   before do
     @calculator = RPNCalculator.new
   end
 
-  it "adds two numbers" do
+  it 'adds two numbers' do
     calculator.push(2)
     calculator.push(3)
     calculator.plus
     calculator.value.should == 5
   end
 
-  it "adds three numbers" do
+  it 'adds three numbers' do
     calculator.push(2)
     calculator.push(3)
     calculator.push(4)
@@ -60,14 +61,14 @@ describe RPNCalculator do
     calculator.value.should == 9
   end
 
-  it "subtracts the second number from the first number" do
+  it 'subtracts the second number from the first number' do
     calculator.push(2)
     calculator.push(3)
     calculator.minus
     calculator.value.should == -1
   end
 
-  it "adds and subtracts" do
+  it 'adds and subtracts' do
     calculator.push(2)
     calculator.push(3)
     calculator.push(4)
@@ -77,7 +78,7 @@ describe RPNCalculator do
     calculator.value.should == 1
   end
 
-  it "multiplies and divides" do
+  it 'multiplies and divides' do
     calculator.push(2)
     calculator.push(3)
     calculator.push(4)
@@ -87,14 +88,14 @@ describe RPNCalculator do
     calculator.value.should == 2.0 * (3.0 / 4.0)
   end
 
-  it "resolves operator precedence unambiguously" do
+  it 'resolves operator precedence unambiguously' do
     # 1 2 + 3 * => (1 + 2) * 3
     calculator.push(1)
     calculator.push(2)
     calculator.plus
     calculator.push(3)
     calculator.times
-    calculator.value.should == (1+2)*3
+    calculator.value.should == (1 + 2) * 3
 
     # 1 2 3 * + => 1 + (2 * 3)
     calculator.push(1)
@@ -102,46 +103,45 @@ describe RPNCalculator do
     calculator.push(3)
     calculator.times
     calculator.plus
-    calculator.value.should == 1+(2*3)
+    calculator.value.should == 1 + (2 * 3)
   end
 
   it "fails informatively when there's not enough values stacked away" do
-    expect {
+    expect do
       calculator.plus
-    }.to raise_error("calculator is empty")
+    end.to raise_error('calculator is empty')
 
-    expect {
+    expect do
       calculator.minus
-    }.to raise_error("calculator is empty")
+    end.to raise_error('calculator is empty')
 
-    expect {
+    expect do
       calculator.times
-    }.to raise_error("calculator is empty")
+    end.to raise_error('calculator is empty')
 
-    expect {
+    expect do
       calculator.divide
-    }.to raise_error("calculator is empty")
+    end.to raise_error('calculator is empty')
   end
 
   # extra credit
-  it "tokenizes a string" do
-    calculator.tokens("1 2 3 * + 4 5 - /").should ==
+  it 'tokenizes a string' do
+    calculator.tokens('1 2 3 * + 4 5 - /').should ==
       [1, 2, 3, :*, :+, 4, 5, :-, :/]
   end
 
   # extra credit
-  it "evaluates a string" do
-    calculator.evaluate("1 2 3 * +").should ==
+  it 'evaluates a string' do
+    calculator.evaluate('1 2 3 * +').should ==
       ((2 * 3) + 1)
 
-    calculator.evaluate("4 5 -").should ==
+    calculator.evaluate('4 5 -').should ==
       (4 - 5)
 
-    calculator.evaluate("2 3 /").should ==
+    calculator.evaluate('2 3 /').should ==
       (2.0 / 3.0)
 
-    calculator.evaluate("1 2 3 * + 4 5 - /").should ==
+    calculator.evaluate('1 2 3 * + 4 5 - /').should ==
       (1.0 + (2 * 3)) / (4 - 5)
   end
-
 end
